@@ -31,7 +31,7 @@ Tape.prototype.write = function (symbol) {
 
 Tape.prototype.headRight = function () {
   var before = this.tape.before,
-      after = this.tape.after;
+    after = this.tape.after;
   before.push(after.pop());
   if (_.isEmpty(after)) {
     after.push(this.blank);
@@ -39,11 +39,13 @@ Tape.prototype.headRight = function () {
 };
 Tape.prototype.headLeft = function () {
   var before = this.tape.before,
-      after = this.tape.after;
+    after = this.tape.after;
   if (_.isEmpty(before)) {
     before.push(this.blank);
   }
   after.push(before.pop());
+};
+Tape.prototype.headNone = function () {
 };
 
 Tape.prototype.toString = function () {
@@ -67,7 +69,7 @@ Tape.prototype.readOffset = function (i) {
 // for tape visualization.
 // Read the values from an offset range (inclusive of start and end).
 Tape.prototype.readRange = function (start, end) {
-  return _.range(start, end+1).map(function (i) {
+  return _.range(start, end + 1).map(function (i) {
     return this.readOffset(i);
   }, this);
 };
